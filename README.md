@@ -1,9 +1,9 @@
-# press-releases-belga-publication-service
+# press-releases-api-publication-service
 
-This microservice looks for publication tasks that have its publication-channel set to "Belga", are not
+This microservice looks for publication tasks that have its publication-channel set to "Website vlaanderen.be", are not
 started yet (`adms:status`) and its publication-event has no `ebucore:publicationEndDateTime` yet.
 
-For every result found, it generates an xml file, updates the statuses and dates and puts the xml file on the ftp server of Belga.
+For every result found, it copies the press releases to the graph `http://mu.semte.ch/graphs/published`
 
 ## Tutorials
 ### Add the service to a stack
@@ -11,14 +11,11 @@ Add the service to your `docker-compose.yml`:
 
 ```yaml
 services:
-  press-releases-belga-publication:
-    image: kanselarij/press-releases-belga-publication-service:0.1.0
-    volumes:
-      - ./data/belga:/share
+  api-publication:
+    image: kanselarij/press-releases-api-publication-service:0.1.0
     restart: always
     logging: *default-logging
 ```
-The mounted volume `./data/belga` is the location where the xml files will be stored.
 
 Next, make the service listen for new conversion tasks. Assuming a delta-notifier is already available in the stack, add the following rules to the delta-notifier's configuration in `./config/delta/rules.js`.
 
@@ -35,7 +32,7 @@ Next, make the service listen for new conversion tasks. Assuming a delta-notifie
         },
     },
     callback: {
-        url: 'http://press-releases-belga-publication/delta',
+        url: 'http://press-releases-api-publication/delta',
         method: 'POST'
     },
     options: {
@@ -47,18 +44,6 @@ Next, make the service listen for new conversion tasks. Assuming a delta-notifie
 ```
 
 ## Reference
-
-### Configuration
-
-The following environment variables have to be configured:
-
-| Key | type | description |
-|-----|------|---------|
-| BELGA_FTP_USERNAME | string | username to connect to the ftp server |
-| BELGA_FTP_PASSWORD | string | password to connect to the ftp server |
-| BELGA_FTP_HOST | string | host of the ftp server |
-
-The service will fail if the environment variables are not defined properly.
 
 
 ### Model
@@ -81,8 +66,7 @@ The service will fail if the environment variables are not defined properly.
 | status              | `adms:status`            | `rdfs:Resource` | Status of the publication task, having value `<http://themis.vlaanderen.be/id/concept/publication-task-status/not-started>` when this service is triggered |
 | created             | `dct:created`            | `xsd:dateTime`  | Datetime of creation of the task                                                                                                                           |
 | modified            | `dct:modified`           | `xsd:dateTime`  | Datetime of the last modification of the task                                                                                                              |
-| publication-channel | `ext:publicationChannel` | `rdfs:Resource` | Publication channel related to the task. Only the Belga publication channel (`http://themis.vlaanderen.be/id/publicatiekanaal/04a5d121-c991-493c-b645-b0c67cc53cf6`) is of interest to this service                                              |
-| content             | `nie:htmlContent`        | `string`        | The html content generated for the Belga press release                                                                                                     |
+| publication-channel | `ext:publicationChannel` | `rdfs:Resource` | Publication channel related to the task. Only the Vlaanderen.be publication channel (`http://themis.vlaanderen.be/id/publicatiekanaal/c06c30f5-d9e9-490e-822c-43faa9d0b25e`) is of interest to this service                                              |
 
 
 #### Publication task statuses
@@ -96,7 +80,7 @@ The status of the publication task will be updated to reflect the progress of th
 ```
 POST /delta
 ```
-Endpoint that receives delta's from the delta-notifier and executes a publication task when this task is ready for publication. A successfully completed publication task will result in an xml file being put on the ftp server of Belga.
+Endpoint that receives delta's from the delta-notifier and executes a publication task when this task is ready for publication. A successfully completed publication task will result in the press released being copied to the published graph.
 The endpoint is triggered externally whenever a publication task is ready for processing and is not supposed to be triggered manually.
 
 ### Responses
