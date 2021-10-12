@@ -66,7 +66,7 @@ Next, make the service listen for new conversion tasks. Assuming a delta-notifie
 | status              | `adms:status`            | `rdfs:Resource` | Status of the publication task, having value `<http://themis.vlaanderen.be/id/concept/publication-task-status/not-started>` when this service is triggered |
 | created             | `dct:created`            | `xsd:dateTime`  | Datetime of creation of the task                                                                                                                           |
 | modified            | `dct:modified`           | `xsd:dateTime`  | Datetime of the last modification of the task                                                                                                              |
-| publication-channel | `ext:publicationChannel` | `rdfs:Resource` | Publication channel related to the task. Only the Vlaanderen.be publication channel (`http://themis.vlaanderen.be/id/publicatiekanaal/c06c30f5-d9e9-490e-822c-43faa9d0b25e`) is of interest to this service                                              |
+| publication-channel | `ext:publicationChannel` | `rdfs:Resource` | Publication channel related to the task. Only the Website vlaanderen.be publication channel (`http://themis.vlaanderen.be/id/publicatiekanaal/25421c3d-9d3c-4378-91e5-a13103ad3e43`) is of interest to this service                                              |
 
 
 #### Publication task statuses

@@ -1,20 +1,6 @@
 import { app, errorHandler } from 'mu';
 import { getNotStartedPublicationTasks, TASK_ONGOING_STATUS } from './lib/publication-task';
 
-// TODO any env variables needed?
-const requiredEnvironmentVariables = [
-
-];
-
-let error = false;
-requiredEnvironmentVariables.forEach((key) => {
-  if (!process.env[key]) {
-    console.log(`[ERROR]:Environment variable ${key} must be configured`);
-    error = true;
-  }
-});
-if (error) process.exit(1);
-
 app.post('/delta', async function (req, res, next) {
   console.log("Processing deltas for API...");
 
