@@ -1,21 +1,17 @@
 {
-  "name": "press-releases-belga-publication-service",
+  "name": "press-releases-api-publication-service",
   "version": "0.1.0",
-  "description": "Microservice that ingests delta files for Belga press releases",
+  "description": "Microservice that ingests delta files for Website Vlaandere.be press releases",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kanselarij/press-releases-belga-publication-service.git"
+    "url": "git+https://github.com/kanselarij/press-releases-api-publication-service.git"
   },
   "author": "redpencil.io",
   "license": "MIT",
   "dependencies": {
-    "@lblod/mu-auth-sudo": "^0.2.0",
-    "ftp": "^0.3.10",
-    "moment": "^2.23.0",
-    "moment-timezone": "^0.5.33",
-    "xml": "^1.0.1"
+    "@lblod/mu-auth-sudo": "^0.2.0"
   }
 }
