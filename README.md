@@ -32,7 +32,7 @@ Next, make the service listen for new conversion tasks. Assuming a delta-notifie
         },
     },
     callback: {
-        url: 'http://press-releases-api-publication/delta',
+        url: 'http://api-publication/delta',
         method: 'POST'
     },
     options: {
