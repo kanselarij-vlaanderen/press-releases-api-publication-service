@@ -16,7 +16,8 @@
         "http://purl.org/dc/terms/creator",
         "http://www.semanticdesktop.org/ontologies/2007/01/19/nie#hasPart",
         "https://data.vlaanderen.be/ns/besluitvorming#beleidsveld",
-        "http://mu.semte.ch/vocabularies/ext/used"
+        "http://mu.semte.ch/vocabularies/ext/used",
+        "http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#isScheduledOn"
       ]
     },
     {
@@ -81,6 +82,15 @@
         "http://mu.semte.ch/vocabularies/core/uuid",
         "http://www.w3.org/2006/vcard/ns#hasValue",
         "http://purl.org/dc/terms/creator"
+      ]
+    },
+    {
+      "type": "ebucore:PublicationEvent",
+      "path": "ebucore:isScheduledOn",
+      "properties": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://mu.semte.ch/vocabularies/core/uuid",
+        "http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#publishedStartDateTime"
       ]
     }
   ]
