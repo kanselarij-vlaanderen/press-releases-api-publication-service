@@ -12,7 +12,7 @@ Add the service to your `docker-compose.yml`:
 ```yaml
 services:
   api-publication:
-    image: kanselarij/press-releases-api-publication-service:0.1.0
+    image: kanselarij/press-releases-api-publication-service:0.2.1
     restart: always
     logging: *default-logging
 ```

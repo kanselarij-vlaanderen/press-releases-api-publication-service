@@ -1,6 +1,6 @@
 {
   "name": "press-releases-api-publication-service",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Microservice that ingests delta files for Website Vlaanderen.be press releases",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
